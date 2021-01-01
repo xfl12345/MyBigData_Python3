@@ -5,9 +5,11 @@
 约束搜索引擎，只显示过去1年以内的结果
 找到这篇博客：<https://www.cnblogs.com/jiangxiaobo/p/12786205.html>
 其中提到：
+
 >需要库
 >1、DBUtils pip install DBUtils
 >2、pymysql pip install pymysql/MySQLdb
+
 所以……pymysql和MySQLdb有什么不一样？选哪个好？
 百度搜索“pymysql和MySQLdb”
 结果找到这个：<https://www.cnblogs.com/yuhou/p/10868831.html>
@@ -42,24 +44,8 @@ __version__ = '2.0'
 随即又去谷歌一番，查找官方开发文档，搜索“python3 DBUtils.pooled_db”
 结果找到这个：<https://webwareforpython.github.io/DBUtils/main.html#pooleddb-pooled-db>
 
-修改"db_config.py"里的配置信息，去phpmyadmin在数据库里添加一个权限有范围的普通账号
-数据库里添加一个表“test_table”，顺便添加点东西以供测试
-
-```sql
-START TRANSACTION;
-DROP TABLE IF EXISTS `test_table`;
-CREATE TABLE IF NOT EXISTS `test_table` (
-  `ID` int(11) NOT NULL,
-  `num` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-INSERT INTO `test_table` (`ID`, `num`) VALUES
-(1, 666),
-(233, 678);
-COMMIT;
-```
-
-我看了一下这篇博客的"mysqLhelper.py"是怎么实现的
-感觉很复杂，功能很高级，但很有可能过时了，因为版本有变化
+看看，感觉很难的样子，然后我又看了一下这篇博客的"mysqLhelper.py"是怎么实现的
+感觉还是很复杂，功能好像很高级，但很有可能过时了，因为版本有变化
 所以为了习得技术，得自己另外写一个程序测试一下
 搞个"testSQL.py"，内容如下：
 
@@ -81,7 +67,24 @@ cursor.close();
 conn.close();
 ```
 
-为了防止出现意外，我又去确定配置没有问题（毕竟跨版本），
+修改"db_config.py"里的配置信息，去phpmyadmin在数据库里添加一个权限有范围的普通账号
+数据库里添加一个表“test_table”，顺便添加点东西以供测试
+
+```sql
+START TRANSACTION;
+DROP TABLE IF EXISTS `test_table`;
+CREATE TABLE IF NOT EXISTS `test_table` (
+  `ID` int(11) NOT NULL,
+  `num` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `test_table` (`ID`, `num`) VALUES
+(1, 666),
+(233, 678);
+COMMIT;
+```
+
+
+为了防止出现意外，我又去确定配置有没有问题（毕竟跨版本），
 又去查阅了 DBUtils.pooled_db 的源码，
 发现连接数据库的标准写法好像有点出入，
 在"pooled_db.py"的 第 78 行：
@@ -117,6 +120,19 @@ PS E:\Data\project\2020_MyBigData\MyBigData_Python3>  & 'C:\Program Files\Python
 (1, 666)
 (233, 678)
 ```
+
+重新整理了一下学习log，因为之前学习的时候并没有做跟踪记录
+后来重新再走一遍学习过程写出来的，文章顺序不自然
+（因为躺了坑之后，把坑填平了，然后又忘记是怎么被坑的，XD）
+
+我发现这篇博客<https://www.cnblogs.com/jiangxiaobo/p/12786205.html>
+开始写得还好，具有引导性，到后面我仔细想了想
+我们需要的是 **单例模式** 的连接池，不然多线程会有海量开销
+然而………作者把它写成了一个类，这就挺迷的……
+如果以模块的形式导入到其它Python文件，据说可以保证是单例
+但是写成一个类难道不是多此一举？
+
+于是我索性简化了一番……
 
 
 

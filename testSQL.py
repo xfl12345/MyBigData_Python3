@@ -1,18 +1,19 @@
-import db_dbutils_init
+import my_pooled_db
 
-myTestConnectionPool = db_dbutils_init.get_my_connection();
+sqlStr = "select * from test_table;"
 
-sqlStr = "select * from test_table;";
-cursor, conn = myTestConnectionPool.getconn();
 
-cursor.execute(sqlStr);
-res = cursor.fetchone();
-print(res);
-res = cursor.fetchone();
-print(res);
+conn = my_pooled_db.get_shared_connection()
 
-cursor.close();
-conn.close();
+cursor = conn.cursor()
+cursor.execute(sqlStr)
+res = cursor.fetchone()
+print(res)
+res = cursor.fetchone()
+print(res)
+
+cursor.close()
+my_pooled_db.release_shared_connection(conn)
 
 
 

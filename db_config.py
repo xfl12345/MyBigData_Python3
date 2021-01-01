@@ -2,11 +2,11 @@
 import pymysql
 
 # 数据库信息
-DB_TEST_HOST = "127.0.0.1"
-DB_TEST_PORT = 3306
-DB_TEST_USER = "xfl"
-DB_TEST_PASSWORD = "amazingxfl666"
-DB_TEST_DBNAME = "xfl_mybigdata"
+DB_HOST = "127.0.0.1"
+DB_PORT = 3306
+DB_USER = "xfl"
+DB_PASSWORD = "amazingxfl666"
+DB_DBNAME = "xfl_mybigdata"
 
 # 数据库连接编码
 DB_CHARSET = "utf8"
