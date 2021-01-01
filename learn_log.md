@@ -6,9 +6,9 @@
 找到这篇博客：<https://www.cnblogs.com/jiangxiaobo/p/12786205.html>
 其中提到：
 
->需要库
->1、DBUtils pip install DBUtils
->2、pymysql pip install pymysql/MySQLdb
+>需要库  
+>1、DBUtils pip install DBUtils  
+>2、pymysql pip install pymysql/MySQLdb  
 
 所以……pymysql和MySQLdb有什么不一样？选哪个好？
 百度搜索“pymysql和MySQLdb”
