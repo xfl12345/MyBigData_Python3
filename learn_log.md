@@ -146,7 +146,7 @@ PS E:\Data\project\2020_MyBigData\MyBigData_Python3>  & 'C:\Program Files\Python
 
 **ten thousand years later**
 
-停止继续开发这个项目1个星期了。。  
+停止继续开发这个项目2个星期了。。  
 失踪人口回归了！！  
 可能有些网友会问：“干啥去了？”  
 
