@@ -1,4 +1,5 @@
 import my_pooled_db
+from appconst import data_type_lenght
 
 sqlStr = "select * from test_table;"
 
@@ -14,6 +15,8 @@ print(res)
 
 cursor.close()
 my_pooled_db.release_shared_connection(conn)
+
+print(data_type_lenght.mysql5p7)
 
 
 
