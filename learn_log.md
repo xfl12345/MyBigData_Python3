@@ -9,8 +9,12 @@
 其中提到：  
 
 >需要库  
->1、DBUtils pip install DBUtils  
->2、pymysql pip install pymysql/MySQLdb  
+> 
+>1、DBUtils   
+> pip install DBUtils  
+> 
+>2、pymysql  
+> pip install pymysql/MySQLdb  
 
 所以……pymysql和MySQLdb有什么不一样？选哪个好？  
 百度搜索“pymysql和MySQLdb”  
@@ -21,13 +25,13 @@
 马上，管理员身份运行CMD执行命令：`pip3 install pymysql`  
 
 然后按照博客给的范文，完整地把代码复制下来。。  
-发现Visual Studio Code说这个"db_dbutils_init.py"的第1行  
+发现Visual Studio Code说这个 `db_dbutils_init.py` 的第1行  
 `from DBUtils.PooledDB import PooledDB`有错误，  
-说是这个"PooledDB"找不到，我按住Ctrl键然后鼠标左键点击这个"DBUtils"，  
-发现可以点进去，说明DBUtils还是安装成功了的，有这个包，  
-看了看 DBUtils 的 "__init__.py"文件内容：  
+说是这个"PooledDB"找不到，我按住Ctrl键然后鼠标左键点击这个 `DBUtils` ，  
+发现可以点进去，说明 `DBUtils` 还是安装成功了的，有这个包，  
+看了看 DBUtils 的 `__init__.py` 文件内容：  
 
-```python
+```text
 # DBUtils main package
 
 __all__ = [
@@ -52,7 +56,7 @@ __version__ = '2.0'
 所以为了习得技术，得自己另外写一个程序测试一下  
 搞个 **testSQL.py** ，内容如下：  
 
-```python
+```text
 import db_dbutils_init
 
 myTestConnectionPool = db_dbutils_init.get_my_connection();
@@ -180,4 +184,10 @@ PS E:\Data\project\2020_MyBigData\MyBigData_Python3>  & 'C:\Program Files\Python
 所以正好学习练手一番，这个……就不在这里记录了。。  
 期待一波吧。(^▽^)  
 
+2021年6月1日，失踪人口回归！  
+网友：Cloudflare better node搞好了没有？终于记得回来开发MyBigData项目了？  
+弱小可怜又无助的我：开发好了开发好了，MyBigData在做了在做了，唉。。。  
+
+Cloudflare better node项目是一个简单的用Python3.8脚本写的无脑测速工具  
+开源项目地址：<https://github.com/xfl12345/cloudflare-better-node>  
 
