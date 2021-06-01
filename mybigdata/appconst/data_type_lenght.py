@@ -7,7 +7,7 @@ mysql5p7 = {
         data_type.Mysql5p7.TINYINT: 1,
         data_type.Mysql5p7.SMALLINT: 2,
         data_type.Mysql5p7.MEDIUMINT: 3,
-        data_type.Mysql5p7.INT: 4,
+        # data_type.Mysql5p7.INT: 4,
         data_type.Mysql5p7.INTEGER: 4,
         data_type.Mysql5p7.BIGINT: 8,
 
@@ -38,7 +38,8 @@ mysql5p7 = {
     },
     # 特殊的可变长度的数据类型
     "special-variable": {
-        data_type.Mysql5p7.DECIMAL: ((1, 65), (0, 30))
+        data_type.Mysql5p7.DECIMAL: ((1, 65), (0, 30)),
+        # data_type.Mysql5p7.DEC: ((1, 65), (0, 30)),
     },
 
 }

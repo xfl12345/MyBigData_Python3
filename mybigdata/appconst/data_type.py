@@ -1,17 +1,17 @@
 
-
 class Mysql5p7:
     TINYINT = "TINYINT"
     SMALLINT = "SMALLINT"
     MEDIUMINT = "MEDIUMINT"
-    INT = "INT"
     INTEGER = "INTEGER"
+    # INT = "INTEGER"
     BIGINT = 'BIGINT'
 
     FLOAT = "FLOAT"
     DOUBLE = "DOUBLE"
 
     DECIMAL = "DECIMAL"
+    # DEC = "DECIMAL"
 
     DATE = "DATE"
     TIME = "TIME"

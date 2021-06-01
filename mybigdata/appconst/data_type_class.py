@@ -7,7 +7,7 @@ mysql5p7 = {
         data_type.Mysql5p7.TINYINT,
         data_type.Mysql5p7.SMALLINT,
         data_type.Mysql5p7.MEDIUMINT,
-        data_type.Mysql5p7.INT,
+        # data_type.Mysql5p7.INT,
         data_type.Mysql5p7.INTEGER,
         data_type.Mysql5p7.BIGINT,
     },
