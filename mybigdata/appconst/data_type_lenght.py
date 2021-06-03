@@ -7,8 +7,8 @@ mysql5p7 = {
         data_type.Mysql5p7.TINYINT: 1,
         data_type.Mysql5p7.SMALLINT: 2,
         data_type.Mysql5p7.MEDIUMINT: 3,
-        # data_type.Mysql5p7.INT: 4,
         data_type.Mysql5p7.INTEGER: 4,
+        # data_type.Mysql5p7.INT: 4,
         data_type.Mysql5p7.BIGINT: 8,
 
         data_type.Mysql5p7.FLOAT: 4,
