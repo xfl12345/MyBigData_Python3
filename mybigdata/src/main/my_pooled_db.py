@@ -1,5 +1,5 @@
 from dbutils.pooled_db import PooledDB
-from mybigdata.main import db_config as config
+from mybigdata.src.main import db_config as config
 
 """
 @功能：创建数据库连接池
