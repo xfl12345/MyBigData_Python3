@@ -1,5 +1,5 @@
 import my_pooled_db
-from appconst import data_type_lenght
+from mybigdata.main.appconst import data_type_lenght
 
 sqlStr = "select * from test_table;"
 
