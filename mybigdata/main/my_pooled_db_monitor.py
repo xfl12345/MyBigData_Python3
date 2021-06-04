@@ -1,4 +1,4 @@
-import my_pooled_db
+from mybigdata.main import my_pooled_db
 import threading
 import tkinter as tk
 

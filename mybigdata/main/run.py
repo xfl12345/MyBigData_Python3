@@ -1,5 +1,5 @@
 import threading
-from my_pooled_db_monitor import monitor
+from mybigdata.main.my_pooled_db_monitor import monitor
 
 # if __name__=='__main__':
 #     monitor_class = monitor()
