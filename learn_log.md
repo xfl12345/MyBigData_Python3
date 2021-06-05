@@ -191,3 +191,47 @@ PS E:\Data\project\2020_MyBigData\MyBigData_Python3>  & 'C:\Program Files\Python
 Cloudflare better node项目是一个简单的用Python3.8脚本写的无脑测速工具  
 开源项目地址：<https://github.com/xfl12345/cloudflare-better-node>  
 
+因为前段时间在忙毕业设计，我的毕业设计是搞了个基于SSM框架的JavaWeb网盘，  
+里面就大规模使用JSON作为请求和响应的格式，而且是全方面的统一  
+（除了上传和下载文件，其它API都使用JSON）  
+然后想想API怎么设计，以及怎么样才能不会被SQL注入。  
+其实没什么麻烦的，就是折腾个JSON Schema验证一下JSON数据是否合法就可以了！  
+Role A:你可真睿（鸡）智（贼）！  
+Role B:哈哈！那当然！  
+
+截止到目前，我在GitHub上面看到一篇 **Readme** 推荐了这些东西：  
+
+* [jsonschema](https://github.com/Julian/jsonschema)
+* [fastjsonschema](https://github.com/seznam/python-fastjsonschema)
+* [hypothesis-jsonschema](https://github.com/Zac-HD/hypothesis-jsonschema)
+* [jschon](https://github.com/marksparkza/jschon)
+
+网址附上：<https://github.com/json-schema-org/JSON-Schema-Test-Suite>
+
+然后我选用了 **jschon** 作为轮子，只因为它更新频率高些  
+巴拉巴拉写了一堆测试代码，确认可用（实际上是自己太菜，在那练手）  
+
+想了想，这个MyBigData项目应该开发一些轮子给大家用，  
+实现完全傻瓜式地使用MySQL数据库（其它数据库以后再说）  
+
+然后怎么设计这个轮子呢？……  
+没错，依然是使用JSON作为模板，实现JSON -> MySQL table的转换  
+因为JSON可读性很强，而且还可以借用JSON Schema校验数据过滤一部分SQL注入，  
+所以我觉得这个思路没有什么问题（甚至还有点优秀）。。。  
+
+如何开发这个轮子呢？  
+先把HTTP API折腾出来再说吧，否则动态测试有点困难。。  
+
+为了避免重复造轮子，选择一下现成的Web框架  
+
+斟酌损益，最终敲定选择使用flask  
+因为它轻量易学，主要是因为轻量（说不定可以跑在 newifi D2 那种垃圾机器上）  
+
+二话不说，就是开干！  
+```shell
+pip install flask flask-restful
+pip install --upgrade flask flask-restful
+```
+
+
+
