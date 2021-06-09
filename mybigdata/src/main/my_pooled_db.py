@@ -20,7 +20,7 @@ connection_pool = PooledDB(
     user=config.DB_USER,
     passwd=config.DB_PASSWORD,
     database=config.DB_DBNAME,
-    use_unicode=False,
+    use_unicode=config.DB_USE_UNICODE,
     charset=config.DB_CHARSET
 )
 

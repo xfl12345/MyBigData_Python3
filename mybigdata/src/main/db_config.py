@@ -10,6 +10,7 @@ DB_DBNAME = "xfl_mybigdata"
 
 # 数据库连接编码
 DB_CHARSET = "utf8"
+DB_USE_UNICODE = True
 
 # mincached : 启动时开启的闲置连接数量(缺省值 0 开始时不创建连接)
 DB_MIN_CACHED = 10
