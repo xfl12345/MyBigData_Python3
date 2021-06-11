@@ -4,14 +4,14 @@ class Mysql5p7:
     SMALLINT = "SMALLINT"
     MEDIUMINT = "MEDIUMINT"
     INTEGER = "INTEGER"
-    # INT = "INTEGER"
-    BIGINT = 'BIGINT'
+    INT = "INTEGER"
+    BIGINT = "BIGINT"
 
     FLOAT = "FLOAT"
     DOUBLE = "DOUBLE"
 
     DECIMAL = "DECIMAL"
-    # DEC = "DECIMAL"
+    DEC = "DECIMAL"
 
     DATE = "DATE"
     TIME = "TIME"
