@@ -228,10 +228,36 @@ Role B:哈哈！那当然！
 因为它轻量易学，主要是因为轻量（说不定可以跑在 newifi D2 那种垃圾机器上）  
 
 二话不说，就是开干！  
+
 ```shell
 pip install flask flask-restful
 pip install --upgrade flask flask-restful
 ```
+
+隔了 一个星期 才突然想起来更新学习日志  
+却发现自学了太多东西，没做记录，也忘记了自己是如何“面向搜索引擎编程”的  
+flask框架 和 flask-restful框架……这个这个……我是怎么入门的呢？  
+
+flask框架……我是先看官方开发文档入门的，网址如下：  
+<https://dormousehole.readthedocs.io/en/latest/quickstart.html>  
+
+flask-restful框架…… 参考学习了一下技术博客 <https://www.jianshu.com/p/6ac1cab17929>  
+简单地入了一下门，但是深入使用这种强大的框架是远远不够的，于是找了一下官方开发文档  
+首先去Python pip软件源 <https://pypi.org/> 搜索 "**Flask-RESTful**"  
+然后来到了 <https://pypi.org/project/Flask-RESTful/>  
+根据左边的GitHub仓库被Star的个数，找到了官方GitHub仓库  
+<https://github.com/flask-restful/flask-restful>  
+然后在官方GitHub仓库的 "**About**" 简介中，找到了官方指定的开发文档  
+<http://flask-restful.readthedocs.io/>  
+然后就可以“愉快地”使用机器翻译，推敲文章意思，边学习英语边自学flask-restful  
+（也是后来才发现，前面关于 flask-restful框架 的技术博客里的源代码，原来直接源自官方开发文档！）  
+
+然后就是照葫芦画瓢地用flask-restful框架做了一个Web API，完成 数据库连接池 的监视器功能  
+
+后面大量学习了一下关于MySQL的引索及性能优化。。  
+这个知识点太多，非常零碎，犯懒癌又不想码字了  
+（真的太多了，又一次恨不得这个项目马上可以投入使用，全自动地把学习轨迹记录下来）  
+
 
 
 
