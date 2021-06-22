@@ -258,6 +258,16 @@ flask-restful框架…… 参考学习了一下技术博客 <https://www.jianshu
 这个知识点太多，非常零碎，犯懒癌又不想码字了  
 （真的太多了，又一次恨不得这个项目马上可以投入使用，全自动地把学习轨迹记录下来）  
 
+整理一下数据库插入数据的顺序……  
+
+首先假定字符串全部都在 **string_content** 表里，但是 每一条数据都必须有一个 **global_id**  
+若 **string_content** 表里的每一行数据都要有一个 **data_format** ，  
+而 **data_format** 是一个自环引用，引用自己表里的主键ID——**string_id**  
+则第一条字符串必须是用来描述 **data_format** 的……  
+
+为了保证初始化的数据可以正常插入，则不能在建表的同时添加外键约束，只能先斩后奏  
+故优先创建  **string_content** 表，然后往 **string_content**表 插入  
+**global_data_record** 表里的关于 **string_content**表 的 必填字段对应的值。  
 
 
 
