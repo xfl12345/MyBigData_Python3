@@ -13,9 +13,9 @@ class Monitor(flask_restful.Resource):
         self.the_pool = my_pooled_db.connection_pool
 
     def get(self):
-        response_data = {
-            "connections_count": self.the_pool._connections,
-        }
+        response_data = {}
+        if hasattr(self.the_pool, "_connections"):
+            response_data["connections_count"] = self.the_pool._connections
         if hasattr(self.the_pool, "_shared_cache"):
             response_data["shared_cache_count"] = len(self.the_pool._shared_cache)
         if hasattr(self.the_pool, "_idle_cache"):
