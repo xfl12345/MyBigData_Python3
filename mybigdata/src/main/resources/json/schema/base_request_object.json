@@ -1,26 +1,21 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/xfl12345/MyBigData_Python3/blob/main/mybigdata/src/main/resources/json/schema/base_request_object.json",
-  "title": "Product",
-  "description": "基本JSON请求格式",
-  "type": "object",
-  "properties": {
-    "version": {
-      "description": "指定请求的API的版本号",
-      "type": "string"
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/xfl12345/MyBigData_Python3/blob/main/mybigdata/src/main/resources/json/schema/base_request_object.json",
+    "title": "base_request_object",
+    "description": "基本JSON请求格式",
+    "type": "object",
+    "properties": {
+        "version": {
+            "description": "指定请求的API的版本号",
+            "type": "string"
+        },
+        "data": {
+            "description": "具体操作所需要的数据",
+            "type": "object"
+        }
     },
-    "operation": {
-      "description": "具体操作",
-      "type": "string"
-    },
-    "data": {
-      "description": "具体操作所需要的数据",
-      "type": "object"
-    }
-  },
-  "required": [
-    "version",
-    "operation",
-    "data"
-  ]
+    "required": [
+        "version",
+        "data"
+    ]
 }
