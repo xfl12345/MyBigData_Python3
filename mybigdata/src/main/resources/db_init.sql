@@ -286,10 +286,11 @@ CREATE TABLE binary_relationship_record
  */
 CREATE TABLE group_record
 (
-    `group_id`  bigint unsigned not null PRIMARY KEY AUTO_INCREMENT comment '组id',
     `global_id` bigint unsigned not null comment '当前表所在数据库实例里的全局ID',
+    `group_name` bigint unsigned not null default 2 comment '组名',
     foreign key (global_id) references global_data_record (global_id) on delete cascade on update cascade,
-    unique key unique_global_id (global_id) comment '确保每一行数据对应一个相对于数据库唯一的global_id'
+    unique key unique_global_id (global_id) comment '确保每一行数据对应一个相对于数据库唯一的global_id',
+    index boost_query_all (global_id, group_name) comment '加速查询全部数据'
 ) AUTO_INCREMENT = 65536
   ENGINE = InnoDB
   CHARACTER SET = utf8mb4
@@ -304,7 +305,7 @@ CREATE TABLE group_content
     `group_id` bigint unsigned not null comment '组id',
     `item`     bigint unsigned not null comment '组内对象',
     # 关联 group_record 表。毕竟 “组” 这种概念，本就是一对多的关系。
-    foreign key (group_id) references group_record (group_id) on delete cascade on update cascade,
+    foreign key (group_id) references group_record (global_id) on delete cascade on update cascade,
     foreign key (item) references global_data_record (global_id) on delete cascade on update cascade,
     index boost_query_all (group_id, item) comment '加速查询全部数据'
 ) ENGINE = InnoDB
