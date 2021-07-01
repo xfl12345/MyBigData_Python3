@@ -269,5 +269,10 @@ flask-restful框架…… 参考学习了一下技术博客 <https://www.jianshu
 故优先创建  **string_content** 表，然后往 **string_content**表 插入  
 **global_data_record** 表里的关于 **string_content**表 的 必填字段对应的值。  
 
+后来想想 **string_id** 太过局限， **global_id** 失去意义。。。  
+干脆整个 数据库实例 里面只保留 **global_id** 这一条自增主键。  
+这样不会破坏原有设计原则 同时 逻辑也通顺了！（果然正确的答案，往往比较简单粗暴）  
 
-
+巴拉巴拉又写了一堆东西，总算是狠下心来把 JSON Schema 折腾上了  
+Role A:学习日志断片太严重了，楼主，你不填坑吗？  
+Role B:我也不想这样啊，但我实在补不来了。。。（逃）   
