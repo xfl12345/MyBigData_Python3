@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/xfl12345/MyBigData_Python3/blob/main/mybigdata/src/main/resources/json/schema/string_content.json",
+    "title": "新增字符串",
+    "description": "string_content表的插表模板",
+    "type": "object",
+    "properties": {
+        "data_format": {
+            "description": "字符串结构格式",
+            "type": "string",
+            "maxLength": 16000
+        },
+        "string_content": {
+            "description": "字符串内容，最大长度为16000个字符",
+            "type": "string",
+            "maxLength": 16000
+        }
+    },
+    "required": [
+        "string_content"
+    ]
+}

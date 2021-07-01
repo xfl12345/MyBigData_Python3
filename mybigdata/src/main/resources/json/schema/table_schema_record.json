@@ -1,0 +1,26 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/xfl12345/MyBigData_Python3/blob/main/mybigdata/src/main/resources/json/schema/table_schema_record.json",
+    "title": "新增插表模板",
+    "description": "table_schema_record表的插表模板",
+    "type": "object",
+    "properties": {
+        "json_schema": {
+            "description": "插表模板",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "插表模板名称",
+                    "type": "string",
+                    "maxLength": 16000
+                }
+            },
+            "required": [
+                "title"
+            ]
+        }
+    },
+    "required": [
+        "json_schema"
+    ]
+}
