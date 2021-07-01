@@ -35,7 +35,7 @@ class MyUUID():
             timestamp = self._last_timestamp + 1
         self._last_timestamp = timestamp
         if clock_seq is None:
-            clock_seq = random.getrandbits(8) + self.my_ident
+            clock_seq = (random.getrandbits(8) + self.my_ident) & 0x7FFF
             # clock_seq = random.getrandbits(14)  # instead of stable storage
         time_low = timestamp & 0xffffffff
         time_mid = (timestamp >> 32) & 0xffff
