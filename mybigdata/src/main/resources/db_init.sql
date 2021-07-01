@@ -44,14 +44,13 @@ CREATE TABLE string_content
     unique key unique_global_id (global_id) comment '确保每一行数据对应一个相对于数据库唯一的global_id',
     index boost_query_id (data_format, content_length) comment '加速查询主键，避免全表扫描',
     index boost_query_string_content (string_content(768)) comment '尽量加速检索字符串内容，尤其是短字符串'
-) AUTO_INCREMENT = 65536
-  ENGINE = InnoDB
+) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_unicode_ci
   ROW_FORMAT = Dynamic;
 
 INSERT INTO string_content (global_id, data_format, string_content)
-       # 第一个字符串，关于数据格式——text
+    # 第一个字符串，关于数据格式——text
 values (1, 1, 'text'),
        # 第二个字符串，是一个空字符串
        (2, 1, ''),
@@ -116,8 +115,8 @@ SELECT
     g.update_time,
     g.modified_count,
     table_name_src.string_content AS `table_name`,
-    description_src.string_content AS `description`,
-    item_data.string_content AS `data`
+    item_data.string_content AS `data`,
+    description_src.string_content AS `description`
 FROM
     global_data_record AS g,
     string_content AS table_name_src,
@@ -193,25 +192,18 @@ VALUES (20, 'f5ad7c14-cb7a-11eb-b818-f828196a1686', 6, 19);
 INSERT INTO string_content (global_id, data_format, string_content)
 VALUES (20, 1, 'label_record');
 
-
-
-# 补完字符串长度
-UPDATE string_content
-SET content_length = CHAR_LENGTH(string_content)
-WHERE content_length = default(content_length);
-
 /**
 
-f5ad7c15-cb7a-11eb-b7f9-f828196a1686
-f5ad7c16-cb7a-11eb-a43e-f828196a1686
-f5ad7c17-cb7a-11eb-b27a-f828196a1686
-f5ad7c18-cb7a-11eb-92b6-f828196a1686
-f5ad7c19-cb7a-11eb-bbc6-f828196a1686
-f5ad7c1a-cb7a-11eb-a61c-f828196a1686
-f5ad7c1b-cb7a-11eb-808d-f828196a1686
-f5ada312-cb7a-11eb-9f9c-f828196a1686
-f5ada313-cb7a-11eb-8316-f828196a1686
-f5ada314-cb7a-11eb-bf32-f828196a1686
+f5ada316-cb7a-11eb-bc5f-f828196a1686
+f5ada317-cb7a-11eb-82a1-f828196a1686
+f5ada318-cb7a-11eb-bf6e-f828196a1686
+f5ada319-cb7a-11eb-8ea0-f828196a1686
+f5ada31a-cb7a-11eb-84b1-f828196a1686
+f5ada31b-cb7a-11eb-a0b3-f828196a1686
+f5ada31c-cb7a-11eb-b7e5-f828196a1686
+f5ada31d-cb7a-11eb-9d28-f828196a1686
+f5ada31e-cb7a-11eb-b5a9-f828196a1686
+f5ada31f-cb7a-11eb-b560-f828196a1686
  */
 
 /**
@@ -231,11 +223,112 @@ CREATE TABLE table_schema_record
     unique key unique_global_id (global_id) comment '确保每一行数据对应一个相对于数据库唯一的global_id',
     unique key index_schema_name (schema_name) comment '确保插表模板名称的唯一性',
     index boost_query_id (global_id, schema_name, content_length) comment '加速查询主键，避免全表扫描'
-) AUTO_INCREMENT = 65536
-  ENGINE = InnoDB
+) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_unicode_ci
   ROW_FORMAT = Dynamic;
+
+INSERT INTO global_data_record (global_id, uuid, table_name, description)
+VALUES (21, 'f5ad7c15-cb7a-11eb-b7f9-f828196a1686', 6, 4);
+INSERT INTO string_content (global_id, data_format, string_content)
+VALUES (21, 1, 'JSON');
+
+INSERT INTO global_data_record (global_id, uuid, table_name, description)
+VALUES (22, 'f5ad7c16-cb7a-11eb-a43e-f828196a1686', 6, 4);
+INSERT INTO string_content (global_id, data_format, string_content)
+VALUES (22, 1, 'XML');
+
+INSERT INTO global_data_record (global_id, uuid, table_name, description)
+VALUES (23, 'f5ad7c17-cb7a-11eb-b27a-f828196a1686', 6, 4);
+INSERT INTO string_content (global_id, data_format, string_content)
+VALUES (23, 1, 'HTML');
+
+INSERT INTO global_data_record (global_id, uuid, table_name, description)
+VALUES (24, 'f5ad7c18-cb7a-11eb-92b6-f828196a1686', 6, 3);
+INSERT INTO string_content (global_id, data_format, string_content)
+VALUES (24, 1, '插表模板名称');
+
+INSERT INTO global_data_record (global_id, uuid, table_name, description)
+VALUES (25, 'f5ad7c19-cb7a-11eb-bbc6-f828196a1686', 6, 3);
+INSERT INTO string_content (global_id, data_format, string_content)
+VALUES (25, 1, '插表模板');
+
+INSERT INTO global_data_record (global_id, uuid, table_name, description)
+VALUES (26, 'f5ad7c1a-cb7a-11eb-a61c-f828196a1686', 6, 24);
+INSERT INTO string_content (global_id, data_format, string_content)
+VALUES (26, 1, '新增插表模板');
+
+INSERT INTO global_data_record (global_id, uuid, table_name, description)
+VALUES (27, 'f5ad7c1b-cb7a-11eb-808d-f828196a1686', 6, 3);
+INSERT INTO string_content (global_id, data_format, string_content)
+VALUES (27, 1, 'table_schema_record表的插表模板');
+
+INSERT INTO global_data_record (global_id, uuid, table_name, description)
+VALUES (28, 'f5ada312-cb7a-11eb-9f9c-f828196a1686', 10, 27);
+INSERT INTO table_schema_record (global_id, schema_name, json_schema)
+VALUES (28, 25, '{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/xfl12345/MyBigData_Python3/blob/main/mybigdata/src/main/resources/json/schema/table_schema_record.json",
+    "title": "新增插表模板",
+    "description": "table_schema_record表的插表模板",
+    "type": "object",
+    "properties": {
+        "json_schema": {
+            "description": "插表模板",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "插表模板名称",
+                    "type": "string",
+                    "maxLength": 16000
+                }
+            },
+            "required": [
+                "title"
+            ]
+        }
+    },
+    "required": [
+        "json_schema"
+    ]
+}');
+
+INSERT INTO global_data_record (global_id, uuid, table_name, description)
+VALUES (29, 'f5ada313-cb7a-11eb-8316-f828196a1686', 6, 24);
+INSERT INTO string_content (global_id, data_format, string_content)
+VALUES (29, 1, '新增字符串');
+
+INSERT INTO global_data_record (global_id, uuid, table_name, description)
+VALUES (30, 'f5ada314-cb7a-11eb-bf32-f828196a1686', 6, 3);
+INSERT INTO string_content (global_id, data_format, string_content)
+VALUES (30, 1, 'string_content表的插表模板');
+
+INSERT INTO global_data_record (global_id, uuid, table_name, description)
+VALUES (31, 'f5ada315-cb7a-11eb-ae98-f828196a1686', 10, 27);
+INSERT INTO table_schema_record (global_id, schema_name, json_schema)
+VALUES (31, 29, '{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/xfl12345/MyBigData_Python3/blob/main/mybigdata/src/main/resources/json/schema/string_content.json",
+    "title": "新增字符串",
+    "description": "string_content表的插表模板",
+    "type": "object",
+    "properties": {
+        "data_format": {
+            "description": "字符串结构格式",
+            "type": "string",
+            "maxLength": 16000
+        },
+        "string_content": {
+            "description": "字符串内容，最大长度为16000个字符",
+            "type": "string",
+            "maxLength": 16000
+        }
+    },
+    "required": [
+        "string_content"
+    ]
+}');
+
 
 /**
   专门记录树状结构的表
@@ -253,8 +346,7 @@ CREATE TABLE tree_struct_record
     unique key unique_global_id (global_id) comment '确保每一行数据对应一个相对于数据库唯一的global_id',
     foreign key (root_id) references global_data_record (global_id) on delete cascade on update cascade,
     index boost_query_id (global_id, root_id, item_count, tree_deep, content_length) comment '加速查询主键，避免全表扫描'
-) AUTO_INCREMENT = 65536
-  ENGINE = InnoDB
+) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_unicode_ci
   ROW_FORMAT = Dynamic;
@@ -264,9 +356,9 @@ CREATE TABLE tree_struct_record
  */
 CREATE TABLE binary_relationship_record
 (
-    `global_id`              bigint unsigned not null comment '当前表所在数据库实例里的全局ID',
-    `item_a`                 bigint unsigned not null comment '对象A',
-    `item_b`                 bigint unsigned not null comment '对象B',
+    `global_id` bigint unsigned not null comment '当前表所在数据库实例里的全局ID',
+    `item_a`    bigint unsigned not null comment '对象A',
+    `item_b`    bigint unsigned not null comment '对象B',
     foreign key (global_id) references global_data_record (global_id) on delete cascade on update cascade,
     unique key unique_global_id (global_id) comment '确保每一行数据对应一个相对于数据库唯一的global_id',
     foreign key (item_a) references global_data_record (global_id) on delete cascade on update cascade,
@@ -274,8 +366,7 @@ CREATE TABLE binary_relationship_record
     unique unique_limit_ab (item_a, item_b) comment '不允许出现重复关系，以免浪费空间',
     unique unique_limit_ba (item_b, item_a) comment '不管是正着来，还是反着来，都不允许出现重复关系，以免浪费空间',
     index boost_query_all (global_id, item_a, item_b) comment '加速查询全部数据'
-) AUTO_INCREMENT = 65536
-  ENGINE = InnoDB
+) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_unicode_ci
   ROW_FORMAT = Dynamic;
@@ -286,13 +377,12 @@ CREATE TABLE binary_relationship_record
  */
 CREATE TABLE group_record
 (
-    `global_id` bigint unsigned not null comment '当前表所在数据库实例里的全局ID',
+    `global_id`  bigint unsigned not null comment '当前表所在数据库实例里的全局ID',
     `group_name` bigint unsigned not null default 2 comment '组名',
     foreign key (global_id) references global_data_record (global_id) on delete cascade on update cascade,
     unique key unique_global_id (global_id) comment '确保每一行数据对应一个相对于数据库唯一的global_id',
     index boost_query_all (global_id, group_name) comment '加速查询全部数据'
-) AUTO_INCREMENT = 65536
-  ENGINE = InnoDB
+) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_unicode_ci
   ROW_FORMAT = Dynamic;
@@ -328,8 +418,7 @@ CREATE TABLE label_record
     foreign key (label_name) references string_content (global_id) on delete restrict on update cascade,
     foreign key (group_item) references group_record (global_id) on delete restrict on update cascade,
     index boost_query_all (label_name, group_item) comment '加速查询全部数据'
-) AUTO_INCREMENT = 65536
-  ENGINE = InnoDB
+) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_unicode_ci
   ROW_FORMAT = Dynamic;
@@ -341,3 +430,8 @@ CREATE TABLE label_record
 
 SET
     FOREIGN_KEY_CHECKS = 1;
+
+# 补完字符串长度
+UPDATE string_content
+SET content_length = CHAR_LENGTH(string_content)
+WHERE content_length = default(content_length);
