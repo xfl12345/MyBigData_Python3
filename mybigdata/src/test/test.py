@@ -5,4 +5,4 @@ print(data_type_lenght.mysql5p7.to_json_string())
 print()
 print(data_type_class.mysql5p7.to_json_string())
 
-
+print((1 << 64) - 1)
