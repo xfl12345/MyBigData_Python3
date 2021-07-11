@@ -1,5 +1,5 @@
 import json
-from mybigdata.src.main.utils.encoder import MyJSONEncoder
+from mybigdata.src.main.model.utils.encoder import MyJSONEncoder
 from . import data_type
 
 

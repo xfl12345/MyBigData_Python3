@@ -1,8 +1,7 @@
 import concurrent.futures as ccfutures
 import time
-import uuid
 
-import mybigdata.src.main.uuid_generator as uuid_generator
+import mybigdata.src.main.model.utils.uuid_generator as uuid_generator
 # from mybigdata.src.test.test import producer
 
 

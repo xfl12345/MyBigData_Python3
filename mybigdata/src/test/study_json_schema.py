@@ -19,4 +19,6 @@ apiJsonSchema = jschon.JSONSchema(jsonSchemaStr)
 jsonObject = jschon.JSON(testJsonStr)
 
 print( jsonObject )
+print("**********************")
+print( apiJsonSchema.validate() )
 print(apiJsonSchema.evaluate( jsonObject ).valid)

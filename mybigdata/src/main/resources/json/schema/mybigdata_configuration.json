@@ -1,0 +1,53 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/xfl12345/MyBigData_Python3/blob/main/mybigdata/src/main/resources/json/schema/mybigdata_configuration.json",
+    "title": "mybigdata_configuration",
+    "description": "mybigdata配置",
+    "type": "object",
+    "properties": {
+        "core": {
+            "description": "核心配置",
+            "type": "object",
+            "properties": {
+                "json_schema_name": {
+                    "description": "JSON Schema 模板名称",
+                    "type": "object",
+                    "properties": {
+                        "string_type": {
+                            "description": "字符串插入模板名称",
+                            "type": "string"
+                        },
+                        "number_type": {
+                            "description": "数字插入模板名称",
+                            "type": "string"
+                        },
+                        "array_type": {
+                            "description": "数组插入模板名称",
+                            "type": "string"
+                        },
+                        "boolean_type": {
+                            "description": "布尔值插入模板名称",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "string_type",
+                        "number_type",
+                        "array_type",
+                        "boolean_type"
+                    ]
+                }
+            },
+            "required": [
+                "json_schema_name"
+            ]
+        },
+        "additions": {
+            "description": "附加配置",
+            "type": "object"
+        }
+    },
+    "required": [
+        "core"
+    ]
+}

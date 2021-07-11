@@ -1,1 +1,1 @@
-import mybigdata.src.test.test_json_schema
+import mybigdata.src.test.study_json_schema
