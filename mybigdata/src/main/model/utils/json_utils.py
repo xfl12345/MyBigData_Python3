@@ -17,4 +17,5 @@ def dict2class(target_object: object, source_dict: dict):
     for key in source_dict.keys():
         if key in target_object.__class__.__dict__.keys():
             # TODO 判断是否是一样的数据类型 、递归赋值
-            target_object.__setattr__(key, source_dict[key])
+            # target_object.__dict__[key] = source_dict[key]
+            setattr(target_object, key, source_dict[key])
