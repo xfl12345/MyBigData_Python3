@@ -1,5 +1,5 @@
 # 不忽略配置加载逻辑
-!/mybigdata/src/main/model/conf
+!/mybigdata/src/main/model/conf/
 
 # config
 config.json
