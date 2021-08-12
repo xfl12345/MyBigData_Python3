@@ -1,5 +1,7 @@
 import os
-def findAllFilesWithSpecifiedSuffix(target_dir, target_suffix="txt"):
+
+
+def find_all_files_with_specified_suffix(target_dir, target_suffix="txt"):
     find_res = []
     target_suffix_dot = "." + target_suffix
     walk_generator = os.walk(target_dir)

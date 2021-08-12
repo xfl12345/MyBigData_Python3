@@ -20,9 +20,10 @@ SET
 
 CREATE TABLE `test_table`
 (
-    `ID`  int NOT NULL PRIMARY KEY,
+    `ID`  int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `num` int NOT NULL
-) ENGINE = InnoDB
+) AUTO_INCREMENT = 1
+  ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci;
 
@@ -40,16 +41,16 @@ CREATE TABLE string_content
     `global_id`      bigint unsigned not null comment '当前表所在数据库实例里的全局ID',
     `data_format`    bigint unsigned comment '字符串结构格式',
     `content_length` smallint        not null default -1 comment '字符串长度',
-    `string_content` varchar(16000)  not null comment '字符串内容，最大长度为16000个字符',
+    `content`        varchar(768)    not null comment '字符串内容，最大长度为 768 个字符',
     unique key unique_global_id (global_id) comment '确保每一行数据对应一个相对于数据库唯一的global_id',
     index boost_query_id (data_format, content_length) comment '加速查询主键，避免全表扫描',
-    index boost_query_string_content (string_content(768)) comment '尽量加速检索字符串内容，尤其是短字符串'
+    unique key boost_query_content (content(768)) comment '加速检索字符串内容'
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
   COLLATE = utf8mb4_unicode_ci
   ROW_FORMAT = Dynamic;
 
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
     # 第一个字符串，关于数据格式——text
 values (1, 1, 'text'),
        # 第二个字符串，是一个空字符串
@@ -67,6 +68,8 @@ values (1, 1, 'text'),
        # 第八个字符串，关于 全局ID记录表 的名称
        (8, 1, 'global_data_record');
 
+ALTER TABLE string_content
+    ALTER COLUMN data_format SET DEFAULT 1;
 
 /**
   全局ID记录表，记录并关联当前数据库内所有表的每一行数据
@@ -82,6 +85,7 @@ CREATE TABLE global_data_record
     `description`    bigint unsigned not null default 2 comment '该行数据的附加简述',
     # 全局ID 记录表，删除乃大忌。拒绝一切外表级联删除行记录，只允许按 global_id 或 uuid 删除行记录
     # 遵循 一切普通文本 由 字符串记录表
+    # TODO 这里有问题……………………
     foreign key (table_name) references string_content (global_id) on delete restrict on update cascade,
     foreign key (description) references string_content (global_id) on delete restrict on update cascade,
     unique key index_uuid (uuid) comment '确保UUID的唯一性',
@@ -114,9 +118,9 @@ SELECT
     g.create_time,
     g.update_time,
     g.modified_count,
-    table_name_src.string_content AS `table_name`,
-    item_data.string_content AS `data`,
-    description_src.string_content AS `description`
+    table_name_src.content AS `table_name`,
+    item_data.content AS `data`,
+    description_src.content AS `description`
 FROM
     global_data_record AS g,
     string_content AS table_name_src,
@@ -135,61 +139,61 @@ WHERE
 # 注册 table_schema_record 表
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (9, 'f5ad7c09-cb7a-11eb-83ea-f828196a1686', 6, 3);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (9, 1, 'table-JSON模板记录表的名称');
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (10, 'f5ad7c0a-cb7a-11eb-ac82-f828196a1686', 6, 9);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (10, 1, 'table_schema_record');
 
 # 注册 tree_struct_record 表
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (11, 'f5ad7c0b-cb7a-11eb-9265-f828196a1686', 6, 3);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (11, 1, '专门记录树状结构的表的名称');
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (12, 'f5ad7c0c-cb7a-11eb-aaed-f828196a1686', 6, 11);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (12, 1, 'tree_struct_record');
 
 # 注册 binary_relationship_record 表
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (13, 'f5ad7c0d-cb7a-11eb-8151-f828196a1686', 6, 3);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (13, 1, '专门记录二元关系的表的名称');
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (14, 'f5ad7c0e-cb7a-11eb-9ac5-f828196a1686', 6, 13);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (14, 1, 'binary_relationship_record');
 
 # 注册 group_record 表
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (15, 'f5ad7c0f-cb7a-11eb-90bf-f828196a1686', 6, 3);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (15, 1, '组号记录表的名称');
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (16, 'f5ad7c10-cb7a-11eb-9220-f828196a1686', 6, 15);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (16, 1, 'group_record');
 
 # 注册 group_content 表
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (17, 'f5ad7c11-cb7a-11eb-85ff-f828196a1686', 6, 3);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (17, 1, '组成员记录表的名称');
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (18, 'f5ad7c12-cb7a-11eb-be7b-f828196a1686', 6, 17);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (18, 1, 'group_content');
 
 # 注册 label_record 表
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (19, 'f5ad7c13-cb7a-11eb-a63c-f828196a1686', 6, 3);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (19, 1, '标签记录表的名称');
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (20, 'f5ad7c14-cb7a-11eb-b818-f828196a1686', 6, 19);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (20, 1, 'label_record');
 
 /**
@@ -230,37 +234,37 @@ CREATE TABLE table_schema_record
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (21, 'f5ad7c15-cb7a-11eb-b7f9-f828196a1686', 6, 4);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (21, 1, 'JSON');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (22, 'f5ad7c16-cb7a-11eb-a43e-f828196a1686', 6, 4);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (22, 1, 'XML');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (23, 'f5ad7c17-cb7a-11eb-b27a-f828196a1686', 6, 4);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (23, 1, 'HTML');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (24, 'f5ad7c18-cb7a-11eb-92b6-f828196a1686', 6, 3);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (24, 1, '插表模板名称');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (25, 'f5ad7c19-cb7a-11eb-bbc6-f828196a1686', 6, 3);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (25, 1, '插表模板');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (26, 'f5ad7c1a-cb7a-11eb-a61c-f828196a1686', 6, 24);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (26, 1, '新增插表模板');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (27, 'f5ad7c1b-cb7a-11eb-808d-f828196a1686', 6, 3);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (27, 1, 'table_schema_record表的插表模板');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
@@ -295,12 +299,12 @@ VALUES (28, 25, '{
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (29, 'f5ada313-cb7a-11eb-8316-f828196a1686', 6, 24);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (29, 1, '新增字符串');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 VALUES (30, 'f5ada314-cb7a-11eb-bf32-f828196a1686', 6, 3);
-INSERT INTO string_content (global_id, data_format, string_content)
+INSERT INTO string_content (global_id, data_format, content)
 VALUES (30, 1, 'string_content表的插表模板');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
@@ -308,7 +312,7 @@ VALUES (31, 'f5ada315-cb7a-11eb-ae98-f828196a1686', 10, 27);
 INSERT INTO table_schema_record (global_id, schema_name, json_schema)
 VALUES (31, 29, '{
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://github.com/xfl12345/MyBigData_Python3/blob/main/mybigdata/src/main/resources/json/schema/string_content.json",
+    "$id": "https://github.com/xfl12345/MyBigData_Python3/blob/main/mybigdata/src/main/resources/json/schema/content.json",
     "title": "新增字符串",
     "description": "string_content表的插表模板",
     "type": "object",
@@ -318,14 +322,14 @@ VALUES (31, 29, '{
             "type": "string",
             "maxLength": 16000
         },
-        "string_content": {
+        "content": {
             "description": "字符串内容，最大长度为16000个字符",
             "type": "string",
             "maxLength": 16000
         }
     },
     "required": [
-        "string_content"
+        "content"
     ]
 }');
 
@@ -433,5 +437,5 @@ SET
 
 # 补完字符串长度
 UPDATE string_content
-SET content_length = CHAR_LENGTH(string_content)
+SET content_length = CHAR_LENGTH(content)
 WHERE content_length = default(content_length);

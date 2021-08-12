@@ -9,37 +9,34 @@
             "description": "核心配置",
             "type": "object",
             "properties": {
-                "json_schema_name": {
+                "table_name": {
                     "description": "JSON Schema 模板名称",
                     "type": "object",
                     "properties": {
                         "string_type": {
-                            "description": "字符串插入模板名称",
+                            "description": "字符串记录表",
                             "type": "string"
                         },
                         "number_type": {
-                            "description": "数字插入模板名称",
+                            "description": "数字记录表",
                             "type": "string"
                         },
                         "array_type": {
-                            "description": "数组插入模板名称",
+                            "description": "组记录表",
                             "type": "string"
                         },
                         "boolean_type": {
-                            "description": "布尔值插入模板名称",
+                            "description": "布尔值记录表",
                             "type": "string"
                         }
                     },
                     "required": [
-                        "string_type",
-                        "number_type",
-                        "array_type",
-                        "boolean_type"
+                        "string_type"
                     ]
                 }
             },
             "required": [
-                "json_schema_name"
+                "table_name"
             ]
         },
         "additions": {

@@ -1,8 +1,10 @@
 from mybigdata.src.main.model.db import my_pooled_db
 from mybigdata.src.main import global_veriable
+from mybigdata.src.main.model.conf.app_config import APP_CONFIG
 
 import flask
 import flask_restful
+
 
 # TODO 改造RESTful API 使得访问URL即访问 dict 路径，
 #  访问URL即按 类名 定位资源，
@@ -34,7 +36,8 @@ class Monitor(flask_restful.Resource):
             "database_connection_pool": response_data,
             "global_veriable": {
                 "json_schema_map": json_schema_map_dict
-            }
+            },
+            "APP_CONFIG": APP_CONFIG
         }
 
         return flask.make_response(response_data)

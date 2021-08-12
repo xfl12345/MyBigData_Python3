@@ -6,7 +6,7 @@ from mybigdata.src.main.controller.monitor import Monitor
 from mybigdata.src.main.model.conf.config_manager import CONFIGURATION_MANAGER
 
 if __name__ == "__main__":
-    CONFIGURATION_MANAGER.reload_all_json_schema()
+    # CONFIGURATION_MANAGER.reload_all_json_schema()
     # source code URL=https://www.jianshu.com/p/6ac1cab17929
     # source code URL=https://flask-restful.readthedocs.io/en/latest/quickstart.html
     app = flask.Flask("MyBigData")

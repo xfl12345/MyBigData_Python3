@@ -11,7 +11,7 @@ import threading
 #   lock.release() # 释放锁
 #   return uuid_item
 
-class MyUUID():
+class MyUUID(object):
     def __init__(self):
         self.lock = threading.Lock()
         # 获取进程ID
@@ -46,3 +46,6 @@ class MyUUID():
             node = uuid.getnode()
         return uuid.UUID(fields=(time_low, time_mid, time_hi_version,
                                  clock_seq_hi_variant, clock_seq_low, node), version=1)
+
+
+UUID_GENERATOR = MyUUID()

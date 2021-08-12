@@ -10,13 +10,13 @@
             "type": "string",
             "maxLength": 16000
         },
-        "string_content": {
+        "content": {
             "description": "字符串内容，最大长度为16000个字符",
             "type": "string",
             "maxLength": 16000
         }
     },
     "required": [
-        "string_content"
+        "content"
     ]
 }

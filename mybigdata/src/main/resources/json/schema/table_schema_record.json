@@ -13,6 +13,11 @@
                     "description": "插表模板名称",
                     "type": "string",
                     "maxLength": 16000
+                },
+                "description": {
+                    "description": "插表模板描述",
+                    "type": "string",
+                    "maxLength": 16000
                 }
             },
             "required": [
