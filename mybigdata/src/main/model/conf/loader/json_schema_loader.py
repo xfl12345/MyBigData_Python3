@@ -92,7 +92,7 @@ def load_all_schema_from_dir(file_dir_path: str = None):
     for root, dirs, files in os.walk(file_dir_path, topdown=False):
         for name in files:
             json_file_path = os.path.join(root, name)
-            print("Loading json schema file=", json_file_path)
+            logger.info("Loading json schema file=" + json_file_path)
             with open(json_file_path, "r", encoding="utf-8") as f:
                 json_schema_python_object = jschon.JSONSchema.loads(f.read())
                 check_and_add_json_schema_to_global_variable(json_schema_python_object)
