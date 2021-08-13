@@ -1,11 +1,12 @@
-from mybigdata.src.main.model.conf.app_config import APP_CONFIG
 from mybigdata.src.main.global_veriable import json_schema_map
 
 import jschon
+from loguru import logger
 
 
 def valid_json(json_object: jschon.JSON, json_schema_name: str):
-    if json_schema_name is None or \
+    # 优先判断是否为空，若否则检查字典里是否存在传入的 json_schema_name
+    if json_object is None or json_schema_name is None or \
             not (json_schema_name in json_schema_map.keys()):
         return False
     json_schema: jschon.JSONSchema = json_schema_map[json_schema_name]
@@ -13,5 +14,9 @@ def valid_json(json_object: jschon.JSON, json_schema_name: str):
 
 
 def valid_json_string(content: str, json_schema_name: str):
-    json_object = jschon.JSON.loads(content)
+    try:
+        json_object = jschon.JSON.loads(content)
+    except Exception as e:
+        logger.error(e)
+        return False
     return valid_json(json_object, json_schema_name)
