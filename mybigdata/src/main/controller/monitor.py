@@ -1,9 +1,11 @@
 from mybigdata.src.main.model.db import my_pooled_db
-from mybigdata.src.main import global_veriable
+from mybigdata.src.main import global_variable
 from mybigdata.src.main.model.conf.app_config import APP_CONFIG
 
 import flask
 import flask_restful
+
+from loguru import logger
 
 
 # TODO 改造RESTful API 使得访问URL即访问 dict 路径，
@@ -29,9 +31,9 @@ class Monitor(flask_restful.Resource):
             response_data["idle_cache_count"] = len(self.the_pool._idle_cache)
 
         json_schema_map_dict = {}
-        for name, json_schema in global_veriable.json_schema_map.items():
+        for name, json_schema in global_variable.json_schema_map.items():
             json_schema_map_dict[name] = json_schema.value
-        # print(json_schema_map_dict)
+        logger.debug(json_schema_map_dict)
         response_data = {
             "database_connection_pool": response_data,
             "global_veriable": {

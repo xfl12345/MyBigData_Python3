@@ -1,13 +1,13 @@
 from mybigdata.src.main.appconst import data_type_lenght
-from mybigdata.src.main.global_veriable import json_schema_map
+from mybigdata.src.main.global_variable import json_schema_map
 
 from mybigdata.src.main.model.conf.app_config import APP_CONFIG
-from mybigdata.src.main.model.conf.config_manager import CONFIGURATION_MANAGER
+from mybigdata.src.main.model.conf import config_manager
 
 from mybigdata.src.main.model.db import my_pooled_db
 from mybigdata.src.main.model.db.escape_string import escape_string_for_insert
 from mybigdata.src.main.model.db import process_string_type
-from mybigdata.src.main.model.db.just_execute_sql import execute_sql
+from mybigdata.src.main.model.db.just_execute_sql import one_row_query
 
 from mybigdata.src.main.model.utils.uuid_generator import UUID_GENERATOR
 
@@ -28,7 +28,7 @@ def update_description_using_global_id(global_id, description_global_id):
                  f"SET description = {description_global_id} " \
                  f"WHERE global_id = {global_id};"
 
-    flag, res, exception = execute_sql(sql_string)
+    flag, res, exception = one_row_query(sql_string)
 
     return flag
 
@@ -56,5 +56,5 @@ def select_global_record_by_uuid(uuid):
     sql_string = f"select * from {global_data_record_table_name} " \
                  f"where uuid = {uuid};"
 
-    flag, res, exception = execute_sql(sql_string)
+    flag, res, exception = one_row_query(sql_string)
     return res

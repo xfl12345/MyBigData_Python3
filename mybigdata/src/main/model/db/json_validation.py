@@ -1,4 +1,4 @@
-from mybigdata.src.main.global_veriable import json_schema_map
+from mybigdata.src.main.global_variable import json_schema_map
 
 import jschon
 from loguru import logger

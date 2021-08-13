@@ -47,14 +47,13 @@ class DbConfig:
 
 # APP内建的 数据库表 的名称
 class CoreTableName:
-    global_record = None
-    string_type = None
-    number_type = None
-    array_type = None
-    boolean_type = None
-
     def __init__(self):
         self.global_record = "global_data_record"
+        self.string_type = None
+        self.number_type = None
+        self.array_type = None
+        self.boolean_type = None
+        self.table_schema_record = None
 
 
 class AppConfig:

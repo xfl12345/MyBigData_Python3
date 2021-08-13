@@ -3,7 +3,7 @@ import flask_restful
 
 from mybigdata.src.main.model.utils.encoder import MyJSONEncoder
 from mybigdata.src.main.controller.monitor import Monitor
-from mybigdata.src.main.model.conf.config_manager import CONFIGURATION_MANAGER
+from mybigdata.src.main.model.conf import config_manager
 
 if __name__ == "__main__":
     # CONFIGURATION_MANAGER.reload_all_json_schema()
