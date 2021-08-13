@@ -16,6 +16,8 @@ def get_root_path() -> str:
 
 
 def get_json_schema_resources_root_path() -> str:
+    if os.path.exists(APP_CONFIG.JSON_SCHEMA_DIRECTORY_PATH):
+        return APP_CONFIG.JSON_SCHEMA_DIRECTORY_PATH
     relative_path = APP_CONFIG.JSON_SCHEMA_DIRECTORY_PATH
     absolute_path = get_root_path()
     full_path = os.path.join(absolute_path, relative_path)
@@ -48,9 +50,13 @@ def get_schema_from_database(schema_name: str):
     json_schema = None
     # 查询字符串防注入（特殊符号转义）
     schema_name = escape_string_for_insert(schema_name)
+    # 获取APP核心表名
+    global_data_record_table_name = APP_CONFIG.CORE_TABLE_NAME.global_record
+    string_type_record_table_name = APP_CONFIG.CORE_TABLE_NAME.string_type
     # 构建SQL查询语句
-    sql_string = "select json_schema from table_schema_record,string_content as s " \
-                 "where schema_name = s.global_id and s.content = '{}';".format(schema_name)
+    sql_string = f"select json_schema from {global_data_record_table_name}," \
+                 f"{string_type_record_table_name} as s " \
+                 f"where schema_name = s.global_id and s.content = '{schema_name}';"
     # 只有一行结果的查询
     flag, res, exception = one_row_query(sql_string)
     if res is not None:
@@ -65,17 +71,17 @@ def get_schema_from_database(schema_name: str):
 
 
 def check_and_add_json_schema_to_global_variable(json_schema_python_object: jschon.JSONSchema):
-    flag = False
+    is_succeed = False
     # 验证是否 是合法的 JSON Schema
     try:
         json_schema = json_schema_python_object.validate()
         # 如果合法，加入到内存，高速缓存
         schema_name = json_schema.value["title"].value
         global_variable.json_schema_map[schema_name] = json_schema
-        flag = True
+        is_succeed = True
     except Exception as e:
         logger.error(e)
-    return flag
+    return is_succeed
 
 
 def load_all_schema_from_dir(file_dir_path: str = None):
@@ -94,24 +100,35 @@ def load_all_schema_from_dir(file_dir_path: str = None):
 
 def load_all_schema_from_database():
     # 从数据库加载 JSON Schema
+    # 获取APP核心表名
+    table_schema_record_table_name = APP_CONFIG.CORE_TABLE_NAME.table_schema_record
     # 构建SQL查询语句
-    sql_string = "select json_schema from table_schema_record;"
+    sql_string = f"select json_schema from {table_schema_record_table_name};"
     conn = None
     try:
         conn = my_pooled_db.get_shared_connection()
+
         cursor = conn.cursor()
         cursor.execute(sql_string)
 
-        res = cursor.fetchone()
-        while res is not None:
-            # JSON Schema 在第1列
-            json_schema_python_object = jschon.JSONSchema.loads(res[0])
-            check_and_add_json_schema_to_global_variable(json_schema_python_object)
+        keep_loop_flag = True
+        i = 0
+        while keep_loop_flag:
             res = cursor.fetchone()
+            if res is not None:
+                logger.debug(sql_string + f" [{i}]-> " + str(res))
+                # JSON Schema 在第1列
+                json_schema_python_object = jschon.JSONSchema.loads(res[0])
+                check_and_add_json_schema_to_global_variable(json_schema_python_object)
+                i = i + 1
+            else:
+                keep_loop_flag = False
 
         cursor.close()
         my_pooled_db.release_shared_connection(conn)
     except Exception as e:
+        if conn is not None:
+            conn.rollback()
         logger.error(e)
     if conn is not None:
         my_pooled_db.release_shared_connection(conn)
