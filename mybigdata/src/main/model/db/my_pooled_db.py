@@ -7,21 +7,21 @@ from mybigdata.src.main.model.conf.app_config import DB_CONFIG
 
 
 connection_pool = PooledDB(
-    creator=DB_CONFIG.DB_CREATOR,
-    mincached=DB_CONFIG.DB_MIN_CACHED,
-    maxcached=DB_CONFIG.DB_MAX_CACHED,
-    maxshared=DB_CONFIG.DB_MAX_SHARED,
-    maxconnections=DB_CONFIG.DB_MAX_CONNECYIONS,
-    blocking=DB_CONFIG.DB_BLOCKING,
-    maxusage=DB_CONFIG.DB_MAX_USAGE,
-    setsession=DB_CONFIG.DB_SET_SESSION,
-    host=DB_CONFIG.DB_HOST,
-    port=DB_CONFIG.DB_PORT,
-    user=DB_CONFIG.DB_USER,
-    passwd=DB_CONFIG.DB_PASSWORD,
-    database=DB_CONFIG.DB_DBNAME,
-    use_unicode=DB_CONFIG.DB_USE_UNICODE,
-    charset=DB_CONFIG.DB_CHARSET
+    creator=DB_CONFIG.CREATOR,
+    mincached=DB_CONFIG.MIN_CACHED,
+    maxcached=DB_CONFIG.MAX_CACHED,
+    maxshared=DB_CONFIG.MAX_SHARED,
+    maxconnections=DB_CONFIG.MAX_CONNECYIONS,
+    blocking=DB_CONFIG.BLOCKING,
+    maxusage=DB_CONFIG.MAX_USAGE,
+    setsession=DB_CONFIG.SET_SESSION,
+    host=DB_CONFIG.REMOTE_HOST,
+    port=DB_CONFIG.REMOTE_PORT,
+    user=DB_CONFIG.AUTH_USER,
+    passwd=DB_CONFIG.AUTH_PASSWORD,
+    database=DB_CONFIG.DATABASE_NAME,
+    use_unicode=DB_CONFIG.USE_UNICODE,
+    charset=DB_CONFIG.CHARSET
 )
 
 # 从连接池中取出一个共享连接
