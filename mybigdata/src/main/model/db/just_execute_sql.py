@@ -8,8 +8,8 @@ from loguru import logger
 
 
 def one_row_query(sql_string: str):
-    res = None
-    flag = False
+    result = None
+    is_succeed = False
     exception = None
 
     conn = None
@@ -22,9 +22,10 @@ def one_row_query(sql_string: str):
         cursor.execute(sql_string)
         conn.commit()
 
-        res = cursor.fetchone()
-        logger.debug(sql_string + " -> " + str(res))
-        flag = True
+        result = cursor.fetchone()
+        cursor.close()
+        logger.debug(sql_string + " -> " + str(result))
+        is_succeed = True
     except Exception as e:
         exception = e
         if conn is not None:
@@ -34,5 +35,5 @@ def one_row_query(sql_string: str):
     if conn is not None:
         my_pooled_db.release_shared_connection(conn)
 
-    return flag, res, exception
+    return is_succeed, result, exception
 
