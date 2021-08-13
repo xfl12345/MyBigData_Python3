@@ -49,11 +49,11 @@ class DbConfig:
 class CoreTableName:
     def __init__(self):
         self.global_record = "global_data_record"
-        self.string_type = None
+        self.string_type = "string_content"
         self.number_type = None
         self.array_type = None
         self.boolean_type = None
-        self.table_schema_record = None
+        self.table_schema_record = "table_schema_record"
 
 
 class AppConfig:
