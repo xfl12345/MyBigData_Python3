@@ -368,7 +368,6 @@ CREATE TABLE binary_relationship_record
     foreign key (item_a) references global_data_record (global_id) on delete cascade on update cascade,
     foreign key (item_b) references global_data_record (global_id) on delete cascade on update cascade,
     unique unique_limit_ab (item_a, item_b) comment '不允许出现重复关系，以免浪费空间',
-    unique unique_limit_ba (item_b, item_a) comment '不管是正着来，还是反着来，都不允许出现重复关系，以免浪费空间',
     index boost_query_all (global_id, item_a, item_b) comment '加速查询全部数据'
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
