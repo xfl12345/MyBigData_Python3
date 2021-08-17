@@ -51,7 +51,7 @@ class CoreTableName:
         self.global_record = "global_data_record"
         self.string_type = "string_content"
         self.number_type = None
-        self.array_type = None
+        self.group_type = None
         self.boolean_type = None
         self.table_schema_record = "table_schema_record"
 
