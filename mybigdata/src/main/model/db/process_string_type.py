@@ -23,7 +23,7 @@ def insert_string_and_format(string_content: str, data_format: str = "text"):
 # 向数据库插入字符串，成功则返回 数字类型的 global_id ，失败则返回 None
 def insert_string(content: str):
     # 因为 插入任意一行数据都要有 全局ID，所以要第一件事就是占用全局ID
-    global_id = process_global_id.by_table_name(APP_CONFIG.CORE_TABLE_NAME.string_type)
+    global_id = process_global_id.insert_by_table_name(APP_CONFIG.CORE_TABLE_NAME.string_type)
     if global_id is None:
         return None
 

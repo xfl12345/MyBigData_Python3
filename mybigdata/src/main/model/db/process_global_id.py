@@ -15,7 +15,7 @@ from loguru import logger
 
 
 # 向 全局ID记录表 插入一行新记录，表明其它表要新增一行数据啦！
-def by_table_name(table_name: str) -> int:
+def insert_by_table_name(table_name: str) -> int:
     # Generate UUID
     curr_uuid = UUID_GENERATOR.uuid1()
     # 转义字符串，防止SQL注入
@@ -41,6 +41,11 @@ def by_table_name(table_name: str) -> int:
         if res is not None and len(res) > 0:
             res = int(res[0])
     return res
+
+
+# TODO 使用ORM框架开发这个功能
+def update_global_record_by_global_id(global_id, obj):
+    pass
 
 
 def select_global_record_by_global_id(global_id):
