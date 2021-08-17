@@ -3,6 +3,16 @@
 软件环境：**Python 3.8.5**  
 使用AGPLv3的开源许可证  
 
+相关依赖：  
+* loguru==0.5.3  
+* Flask==2.0.1  
+* Flask_RESTful==0.3.9  
+* jschon==0.5.0  
+* PyMySQL==0.10.1  
+* DBUtils==2.0.2  
+* SQLAlchemy==1.4.17  
+
+
 ## 想了解关于“MyBigData”项目？
 
 欢迎访问：  
