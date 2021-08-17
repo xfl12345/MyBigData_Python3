@@ -2,6 +2,8 @@ import concurrent.futures as ccfutures
 import time
 
 import mybigdata.src.main.model.utils.uuid_generator as uuid_generator
+
+
 # from mybigdata.src.test.test import producer
 
 
@@ -10,6 +12,7 @@ def producer():
     uuid_one = my_uuid.uuid1()
     for i in range(50000):
         print(my_uuid.uuid1())
+
 
 if __name__ == '__main__':
 
