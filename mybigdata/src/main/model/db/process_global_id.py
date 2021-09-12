@@ -2,7 +2,6 @@ from mybigdata.src.main.appconst import data_type_lenght
 from mybigdata.src.main.global_variable import json_schema_map
 
 from mybigdata.src.main.model.conf.app_config import APP_CONFIG
-from mybigdata.src.main.model.conf import config_manager
 
 from mybigdata.src.main.model.db import my_pooled_db
 from mybigdata.src.main.model.db.escape_string import escape_string_for_insert
