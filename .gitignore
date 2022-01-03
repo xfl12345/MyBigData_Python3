@@ -8,7 +8,7 @@ no_upload/
 result/
 
 # PyCharm files
-/.idea/
+.idea
 
 # DiskGenius software file
 .DS_Store
