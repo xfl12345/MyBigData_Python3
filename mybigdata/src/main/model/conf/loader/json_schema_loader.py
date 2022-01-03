@@ -52,7 +52,7 @@ def get_schema_from_database(schema_name: str):
     schema_name = escape_string_for_insert(schema_name)
     # 获取APP核心表名
     global_data_record_table_name = APP_CONFIG.CORE_TABLE_NAME.global_record
-    string_type_record_table_name = APP_CONFIG.CORE_TABLE_NAME.string_type
+    string_type_record_table_name = APP_CONFIG.CORE_TABLE_NAME.string_type.content
     # 构建SQL查询语句
     sql_string = f"select json_schema from {global_data_record_table_name}," \
                  f"{string_type_record_table_name} as s " \
@@ -64,7 +64,9 @@ def get_schema_from_database(schema_name: str):
         json_schema_python_object = json.loads(res[0])
         # 验证是否 是合法的 JSON Schema
         try:
-            json_schema = jschon.JSONSchema(json_schema_python_object).validate()
+            json_schema = jschon.JSONSchema(json_schema_python_object)
+            if not json_schema.validate().valid:
+                json_schema = None
         except Exception as e:
             logger.error(e)
     return json_schema
@@ -74,11 +76,11 @@ def check_and_add_json_schema_to_global_variable(json_schema_python_object: jsch
     is_succeed = False
     # 验证是否 是合法的 JSON Schema
     try:
-        json_schema = json_schema_python_object.validate()
         # 如果合法，加入到内存，高速缓存
-        schema_name = json_schema.value["title"].value
-        global_variable.json_schema_map[schema_name] = json_schema
-        is_succeed = True
+        if json_schema_python_object.validate().valid:
+            schema_name = json_schema_python_object.value["title"]
+            global_variable.json_schema_map[schema_name] = json_schema_python_object
+            is_succeed = True
     except Exception as e:
         logger.error(e)
     return is_succeed
@@ -101,7 +103,7 @@ def load_all_schema_from_dir(file_dir_path: str = None):
 def load_all_schema_from_database():
     # 从数据库加载 JSON Schema
     # 获取APP核心表名
-    table_schema_record_table_name = APP_CONFIG.CORE_TABLE_NAME.table_schema_record
+    table_schema_record_table_name = APP_CONFIG.CORE_TABLE_NAME.table_schema_record.record
     # 构建SQL查询语句
     sql_string = f"select json_schema from {table_schema_record_table_name};"
     conn = None

@@ -1,5 +1,4 @@
 import json
-import sqlalchemy
 
 from flask import Flask, request, jsonify, make_response
 from flask_restful import reqparse, abort, Api, Resource

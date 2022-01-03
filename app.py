@@ -6,7 +6,8 @@ from mybigdata.src.main.controller.monitor import Monitor
 from mybigdata.src.main.model.conf import config_manager
 
 if __name__ == "__main__":
-    # CONFIGURATION_MANAGER.reload_all_json_schema()
+    # 加载配置
+    config_manager.reload_all()
     # source code URL=https://www.jianshu.com/p/6ac1cab17929
     # source code URL=https://flask-restful.readthedocs.io/en/latest/quickstart.html
     app = flask.Flask("MyBigData")
@@ -18,8 +19,6 @@ if __name__ == "__main__":
 
     # 添加 Monitor 监视器到路由
     api.add_resource(Monitor, "/monitor", "/")
-
-
 
     # 启用Flask框架的调试模式（可以热重新加载Python源码）
     app.run(debug=True)

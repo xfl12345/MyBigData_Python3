@@ -10,27 +10,96 @@
             "type": "object",
             "properties": {
                 "table_name": {
-                    "description": "JSON Schema 模板名称",
+                    "description": "JSON Schema 模型名称",
                     "type": "object",
                     "properties": {
+                        "global_record": {
+                            "description": "全局记录表组",
+                            "type": "object",
+                            "properties": {
+                                "record": {
+                                    "description": "全局记录表",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "record"
+                            ]
+                        },
+                        "table_schema_record": {
+                            "description": "JSON Schema表记录表组",
+                            "type": "object",
+                            "properties": {
+                                "record": {
+                                    "description": "JSON Schema记录表",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "record"
+                            ]
+                        },
                         "string_type": {
-                            "description": "字符串记录表",
-                            "type": "string"
+                            "description": "字符串记录表组",
+                            "type": "object",
+                            "properties": {
+                                "content": {
+                                    "description": "字符串内容记录表",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "content"
+                            ]
                         },
                         "number_type": {
-                            "description": "数字记录表",
-                            "type": "string"
-                        },
-                        "array_type": {
-                            "description": "组记录表",
-                            "type": "string"
+                            "description": "数字记录表组",
+                            "type": "object",
+                            "properties": {
+                                "content": {
+                                    "description": "数字内容记录表",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "content"
+                            ]
                         },
                         "boolean_type": {
-                            "description": "布尔值记录表",
-                            "type": "string"
+                            "description": "布尔值记录表组",
+                            "type": "object",
+                            "properties": {
+                                "content": {
+                                    "description": "布尔值内容记录表",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "content"
+                            ]
+                        },
+                        "group_type": {
+                            "description": "组记录表组",
+                            "type": "object",
+                            "properties": {
+                                "record": {
+                                    "description": "组记录表",
+                                    "type": "string"
+                                },
+                                "content": {
+                                    "description": "组内容记录表",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "record",
+                                "content"
+                            ]
                         }
                     },
                     "required": [
+                        "global_record",
+                        "table_schema_record",
                         "string_type"
                     ]
                 }

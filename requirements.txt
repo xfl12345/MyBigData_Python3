@@ -1,6 +1,7 @@
-PyMySQL==0.10.1
-DBUtils==2.0.2
-loguru==0.5.3
-Flask==2.0.1
-jschon==0.5.0
+DBUtils==3.0.1
+Flask==2.0.2
 Flask_RESTful==0.3.9
+jschon==0.7.3
+loguru==0.5.3
+peewee==3.14.8
+PyMySQL==1.0.2

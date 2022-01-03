@@ -5,7 +5,8 @@ import os
 
 from mybigdata.src.main.appconst import commons
 
-CATALOGUE = jschon.Catalogue.create_default_catalogue("2020-12")
+# CATALOGUE = jschon.Catalogue.create_default_catalogue("2020-12")
+CATALOGUE = jschon.create_catalog('2020-12')
 
 
 class DbConfig:
@@ -45,15 +46,62 @@ class DbConfig:
     CREATOR = pymysql
 
 
-# APP内建的 数据库表 的名称
+"""
+CoreTableName 是 APP内建的 数据库表 的 名称 的通用基类
+如果子类没有专门定义 record 字段，则默认 record 是 全局记录表
+"""
+
+
+class CoreTableNameBase:
+    def __init__(self):
+        self.record = None
+        self.content = None
+
+
+class CoreTableNameGlobalRecord(CoreTableNameBase):
+    def __init__(self):
+        super().__init__()
+        self.record = "global_data_record"
+
+
+class CoreTableNameSchemaRecord(CoreTableNameBase):
+    def __init__(self):
+        super().__init__()
+        self.record = "table_schema_record"
+
+
+class CoreTableNameStringType(CoreTableNameBase):
+    def __init__(self):
+        super().__init__()
+        self.content = "string_content"
+
+
+class CoreTableNameNumberType(CoreTableNameBase):
+    def __init__(self):
+        super().__init__()
+
+
+class CoreTableNameBooleanType(CoreTableNameBase):
+    def __init__(self):
+        super().__init__()
+
+
+class CoreTableNameGroupType(CoreTableNameBase):
+    def __init__(self):
+        super().__init__()
+        self.record = "group_record"
+        self.content = "group_content"
+
+
 class CoreTableName:
     def __init__(self):
-        self.global_record = "global_data_record"
-        self.string_type = "string_content"
-        self.number_type = None
-        self.group_type = None
-        self.boolean_type = None
-        self.table_schema_record = "table_schema_record"
+        self.global_record = CoreTableNameGlobalRecord()
+        self.table_schema_record = CoreTableNameSchemaRecord()
+
+        self.string_type = CoreTableNameStringType()
+        self.number_type = CoreTableNameNumberType()
+        self.boolean_type = CoreTableNameBooleanType()
+        self.group_type = CoreTableNameGroupType()
 
 
 class AppConfig:

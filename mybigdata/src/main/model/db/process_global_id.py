@@ -21,7 +21,7 @@ def insert_by_table_name(table_name: str) -> int:
     table_name = escape_string_for_insert(table_name)
     # 获取APP核心表名
     global_data_record_table_name = APP_CONFIG.CORE_TABLE_NAME.global_record
-    string_type_record_table_name = APP_CONFIG.CORE_TABLE_NAME.string_type
+    string_type_record_table_name = APP_CONFIG.CORE_TABLE_NAME.string_type.content
     # 插入一条全局记录
     sql_string = f"insert into {global_data_record_table_name} " \
                  "(uuid, table_name) " \

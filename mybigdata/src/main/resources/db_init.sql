@@ -98,14 +98,14 @@ CREATE TABLE global_data_record
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
 # 先斩后奏 之 关联已有的 字符串 数据
-VALUES (1, 'f5ad7c01-cb7a-11eb-8b78-f828196a1686', 6, 4),
-       (2, 'f5ad7c02-cb7a-11eb-b03f-f828196a1686', 6, 2),
-       (3, 'f5ad7c03-cb7a-11eb-ac6f-f828196a1686', 6, 3),
-       (4, 'f5ad7c04-cb7a-11eb-8173-f828196a1686', 6, 3),
-       (5, 'f5ad7c05-cb7a-11eb-a0a1-f828196a1686', 6, 3),
-       (6, 'f5ad7c06-cb7a-11eb-af85-f828196a1686', 6, 5),
-       (7, 'f5ad7c07-cb7a-11eb-ad01-f828196a1686', 6, 3),
-       (8, 'f5ad7c08-cb7a-11eb-bf48-f828196a1686', 6, 7);
+VALUES (1, 'f5ad7c01-cb7a-11eb-0000-f828196a1686', 6, 4),
+       (2, 'f5ad7c02-cb7a-11eb-0000-f828196a1686', 6, 2),
+       (3, 'f5ad7c03-cb7a-11eb-0000-f828196a1686', 6, 3),
+       (4, 'f5ad7c04-cb7a-11eb-0000-f828196a1686', 6, 3),
+       (5, 'f5ad7c05-cb7a-11eb-0000-f828196a1686', 6, 3),
+       (6, 'f5ad7c06-cb7a-11eb-0000-f828196a1686', 6, 5),
+       (7, 'f5ad7c07-cb7a-11eb-0000-f828196a1686', 6, 3),
+       (8, 'f5ad7c08-cb7a-11eb-0000-f828196a1686', 6, 7);
 
 # 为 字符串表 添加 全局ID 约束
 alter table string_content
@@ -138,94 +138,94 @@ WHERE
 
 # 注册 table_schema_record 表
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (9, 'f5ad7c09-cb7a-11eb-83ea-f828196a1686', 6, 3);
+VALUES (9, 'f5ad7c09-cb7a-11eb-0000-f828196a1686', 6, 3);
 INSERT INTO string_content (global_id, data_format, content)
-VALUES (9, 1, 'table-JSON模板记录表的名称');
+VALUES (9, 1, 'table-JSON模型记录表的名称');
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (10, 'f5ad7c0a-cb7a-11eb-ac82-f828196a1686', 6, 9);
+VALUES (10, 'f5ad7c0a-cb7a-11eb-0000-f828196a1686', 6, 9);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (10, 1, 'table_schema_record');
 
 # 注册 tree_struct_record 表
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (11, 'f5ad7c0b-cb7a-11eb-9265-f828196a1686', 6, 3);
+VALUES (11, 'f5ad7c0b-cb7a-11eb-0000-f828196a1686', 6, 3);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (11, 1, '专门记录树状结构的表的名称');
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (12, 'f5ad7c0c-cb7a-11eb-aaed-f828196a1686', 6, 11);
+VALUES (12, 'f5ad7c0c-cb7a-11eb-0000-f828196a1686', 6, 11);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (12, 1, 'tree_struct_record');
 
 # 注册 binary_relationship_record 表
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (13, 'f5ad7c0d-cb7a-11eb-8151-f828196a1686', 6, 3);
+VALUES (13, 'f5ad7c0d-cb7a-11eb-0000-f828196a1686', 6, 3);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (13, 1, '专门记录二元关系的表的名称');
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (14, 'f5ad7c0e-cb7a-11eb-9ac5-f828196a1686', 6, 13);
+VALUES (14, 'f5ad7c0e-cb7a-11eb-0000-f828196a1686', 6, 13);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (14, 1, 'binary_relationship_record');
 
 # 注册 group_record 表
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (15, 'f5ad7c0f-cb7a-11eb-90bf-f828196a1686', 6, 3);
+VALUES (15, 'f5ad7c0f-cb7a-11eb-0000-f828196a1686', 6, 3);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (15, 1, '组号记录表的名称');
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (16, 'f5ad7c10-cb7a-11eb-9220-f828196a1686', 6, 15);
+VALUES (16, 'f5ad7c10-cb7a-11eb-0000-f828196a1686', 6, 15);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (16, 1, 'group_record');
 
 # 注册 group_content 表
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (17, 'f5ad7c11-cb7a-11eb-85ff-f828196a1686', 6, 3);
+VALUES (17, 'f5ad7c11-cb7a-11eb-0000-f828196a1686', 6, 3);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (17, 1, '组成员记录表的名称');
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (18, 'f5ad7c12-cb7a-11eb-be7b-f828196a1686', 6, 17);
+VALUES (18, 'f5ad7c12-cb7a-11eb-0000-f828196a1686', 6, 17);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (18, 1, 'group_content');
 
 # 注册 label_record 表
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (19, 'f5ad7c13-cb7a-11eb-a63c-f828196a1686', 6, 3);
+VALUES (19, 'f5ad7c13-cb7a-11eb-0000-f828196a1686', 6, 3);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (19, 1, '标签记录表的名称');
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (20, 'f5ad7c14-cb7a-11eb-b818-f828196a1686', 6, 19);
+VALUES (20, 'f5ad7c14-cb7a-11eb-0000-f828196a1686', 6, 19);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (20, 1, 'label_record');
 
 /**
 
-f5ada316-cb7a-11eb-bc5f-f828196a1686
-f5ada317-cb7a-11eb-82a1-f828196a1686
-f5ada318-cb7a-11eb-bf6e-f828196a1686
-f5ada319-cb7a-11eb-8ea0-f828196a1686
-f5ada31a-cb7a-11eb-84b1-f828196a1686
-f5ada31b-cb7a-11eb-a0b3-f828196a1686
-f5ada31c-cb7a-11eb-b7e5-f828196a1686
-f5ada31d-cb7a-11eb-9d28-f828196a1686
-f5ada31e-cb7a-11eb-b5a9-f828196a1686
-f5ada31f-cb7a-11eb-b560-f828196a1686
+f5ada316-cb7a-11eb-0000-f828196a1686
+f5ada317-cb7a-11eb-0000-f828196a1686
+f5ada318-cb7a-11eb-0000-f828196a1686
+f5ada319-cb7a-11eb-0000-f828196a1686
+f5ada31a-cb7a-11eb-0000-f828196a1686
+f5ada31b-cb7a-11eb-0000-f828196a1686
+f5ada31c-cb7a-11eb-0000-f828196a1686
+f5ada31d-cb7a-11eb-0000-f828196a1686
+f5ada31e-cb7a-11eb-0000-f828196a1686
+f5ada31f-cb7a-11eb-0000-f828196a1686
  */
 
 /**
-  MyBigData 特色功能之一，就是使用JSON Schema完成对MySQL模板化操作
-  这个表主要存放JSON模板
+  MyBigData 特色功能之一，就是使用JSON Schema完成对MySQL模型化操作
+  这个表主要存放JSON模型
  */
 CREATE TABLE table_schema_record
 (
     `global_id`      bigint unsigned not null comment '当前表所在数据库实例里的全局ID',
-    `schema_name`    bigint unsigned not null comment '插表模板名称',
+    `schema_name`    bigint unsigned not null comment '插表模型名称',
     `content_length` smallint        not null default -1 comment 'json_schema 字段的长度',
     # 这里不遵循 “一切普通文本 由 字符串记录表” 的原则
     # 是因为json格式的字符串可以使用json格式存储，MySQL原生支持JSON格式
     # 暂不考虑使用JSON格式存储JSON字符串，暂且先保留修改空间
-    `json_schema`    varchar(16000)  not null comment '插表模板',
+    `json_schema`    varchar(16000)  not null comment '插表模型',
     foreign key (global_id) references global_data_record (global_id) on delete cascade on update cascade,
     unique key unique_global_id (global_id) comment '确保每一行数据对应一个相对于数据库唯一的global_id',
-    unique key index_schema_name (schema_name) comment '确保插表模板名称的唯一性',
+    unique key index_schema_name (schema_name) comment '确保插表模型名称的唯一性',
     index boost_query_id (global_id, schema_name, content_length) comment '加速查询主键，避免全表扫描'
 ) ENGINE = InnoDB
   CHARACTER SET = utf8mb4
@@ -233,56 +233,56 @@ CREATE TABLE table_schema_record
   ROW_FORMAT = Dynamic;
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (21, 'f5ad7c15-cb7a-11eb-b7f9-f828196a1686', 6, 4);
+VALUES (21, 'f5ad7c15-cb7a-11eb-0000-f828196a1686', 6, 4);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (21, 1, 'JSON');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (22, 'f5ad7c16-cb7a-11eb-a43e-f828196a1686', 6, 4);
+VALUES (22, 'f5ad7c16-cb7a-11eb-0000-f828196a1686', 6, 4);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (22, 1, 'XML');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (23, 'f5ad7c17-cb7a-11eb-b27a-f828196a1686', 6, 4);
+VALUES (23, 'f5ad7c17-cb7a-11eb-0000-f828196a1686', 6, 4);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (23, 1, 'HTML');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (24, 'f5ad7c18-cb7a-11eb-92b6-f828196a1686', 6, 3);
+VALUES (24, 'f5ad7c18-cb7a-11eb-0000-f828196a1686', 6, 3);
 INSERT INTO string_content (global_id, data_format, content)
-VALUES (24, 1, '插表模板名称');
+VALUES (24, 1, '插表模型名称');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (25, 'f5ad7c19-cb7a-11eb-bbc6-f828196a1686', 6, 3);
+VALUES (25, 'f5ad7c19-cb7a-11eb-0000-f828196a1686', 6, 3);
 INSERT INTO string_content (global_id, data_format, content)
-VALUES (25, 1, '插表模板');
+VALUES (25, 1, '插表模型');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (26, 'f5ad7c1a-cb7a-11eb-a61c-f828196a1686', 6, 24);
+VALUES (26, 'f5ad7c1a-cb7a-11eb-0000-f828196a1686', 6, 24);
 INSERT INTO string_content (global_id, data_format, content)
-VALUES (26, 1, '新增插表模板');
+VALUES (26, 1, '新增插表模型');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (27, 'f5ad7c1b-cb7a-11eb-808d-f828196a1686', 6, 3);
+VALUES (27, 'f5ad7c1b-cb7a-11eb-0000-f828196a1686', 6, 3);
 INSERT INTO string_content (global_id, data_format, content)
-VALUES (27, 1, 'table_schema_record表的插表模板');
+VALUES (27, 1, 'table_schema_record表的插表模型');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (28, 'f5ada312-cb7a-11eb-9f9c-f828196a1686', 10, 27);
+VALUES (28, 'f5ada312-cb7a-11eb-0000-f828196a1686', 10, 27);
 INSERT INTO table_schema_record (global_id, schema_name, json_schema)
 VALUES (28, 25, '{
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://github.com/xfl12345/MyBigData_Python3/blob/main/mybigdata/src/main/resources/json/schema/table_schema_record.json",
-    "title": "新增插表模板",
-    "description": "table_schema_record表的插表模板",
+    "title": "table_schema_record",
+    "description": "table_schema_record表的插表模型",
     "type": "object",
     "properties": {
         "json_schema": {
-            "description": "插表模板",
+            "description": "插表模型",
             "type": "object",
             "properties": {
                 "title": {
-                    "description": "插表模板名称",
+                    "description": "插表模型名称",
                     "type": "string",
                     "maxLength": 16000
                 }
@@ -298,23 +298,23 @@ VALUES (28, 25, '{
 }');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (29, 'f5ada313-cb7a-11eb-8316-f828196a1686', 6, 24);
+VALUES (29, 'f5ada313-cb7a-11eb-0000-f828196a1686', 6, 24);
 INSERT INTO string_content (global_id, data_format, content)
 VALUES (29, 1, '新增字符串');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (30, 'f5ada314-cb7a-11eb-bf32-f828196a1686', 6, 3);
+VALUES (30, 'f5ada314-cb7a-11eb-0000-f828196a1686', 6, 3);
 INSERT INTO string_content (global_id, data_format, content)
-VALUES (30, 1, 'string_content表的插表模板');
+VALUES (30, 1, 'string_content表的插表模型');
 
 INSERT INTO global_data_record (global_id, uuid, table_name, description)
-VALUES (31, 'f5ada315-cb7a-11eb-ae98-f828196a1686', 10, 27);
+VALUES (31, 'f5ada315-cb7a-11eb-0000-f828196a1686', 10, 27);
 INSERT INTO table_schema_record (global_id, schema_name, json_schema)
 VALUES (31, 29, '{
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://github.com/xfl12345/MyBigData_Python3/blob/main/mybigdata/src/main/resources/json/schema/content.json",
-    "title": "新增字符串",
-    "description": "string_content表的插表模板",
+    "title": "string_content",
+    "description": "string_content表的插表模型",
     "type": "object",
     "properties": {
         "data_format": {

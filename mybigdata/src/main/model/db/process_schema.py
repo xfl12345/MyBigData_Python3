@@ -3,13 +3,13 @@ from mybigdata.src.main.global_variable import json_schema_map
 
 import jschon
 
-
+# TODO 暂未完成
 class ProcessSchema:
     def __init__(self):
         pass
 
     def insert(self, content: str):
-        json_schema_name: str = APP_CONFIG.CORE_TABLE_NAME.string_type
+        json_schema_name: str = APP_CONFIG.CORE_TABLE_NAME.string_type.content
         if json_schema_name is None or \
                 not (json_schema_name in json_schema_map.keys()):
             return False
