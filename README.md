@@ -1,5 +1,9 @@
 # MyBigData_Python3
 
+- 已停更 请移步 `https://github.com/xfl12345/MyBigData`
+
+
+
 软件环境：**Python 3.8.5**  
 使用AGPLv3的开源许可证  
 
